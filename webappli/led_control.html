@@ -1,0 +1,39 @@
+
+<html>
+  <script>
+  	var last_updated = 0;
+  	
+    function r(c,val){
+      val -= 30;
+      if(val < 0){
+      	val = 0;
+      }
+    
+      if(last_updated < +new Date()){
+      	var xhr = new XMLHttpRequest();
+      	xhr.open('GET', 'http://192.168.10.7/led?' + c + '=' + String(val), true);
+      	xhr.send(null);
+      	console.log('r:' + val);
+      	last_updated = + new Date() + 400;
+      }
+      return (0);
+    }
+
+
+  </script>
+  
+
+  <body>
+
+
+    <br>
+      
+    <input type='range' name='num' min='0' max='255' step='1' value='0' oninput='r("r",this.value)' onchange='r("r",this.value)'><br/><br/>
+    <input type='range' name='num' min='0' max='255' step='1' value='0' oninput='r("g",this.value)' onchange='r("g",this.value)'><br/><br/>
+    <input type='range' name='num' min='0' max='255' step='1' value='0' oninput='r("b",this.value)' onchange='r("b",this.value)'>
+
+
+
+
+  </body>
+</html>
